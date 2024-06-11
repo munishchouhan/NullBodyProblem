@@ -16,9 +16,6 @@ class TestControllerTest extends Specification {
     HttpClient client
 
     def 'failing test: should get file'() {
-        given:
-        def controller = new TestController()
-
         when:
         def request = HttpRequest.GET("/tests/1")
         def response = client.toBlocking().exchange(request, StreamedFile)
@@ -28,9 +25,6 @@ class TestControllerTest extends Specification {
     }
 
     def 'successful test: should get file'() {
-        given:
-        def controller = new TestController()
-
         when:
         def request = HttpRequest.GET("/tests/1")
         def response = client.toBlocking().exchange(request, StreamedFile)
