@@ -15,7 +15,7 @@ class TestControllerTest extends Specification {
     @Client("/")
     HttpClient client
 
-    def 'should get file'() {
+    def 'failing test: should get file'() {
         given:
         def controller = new TestController()
 
@@ -25,5 +25,17 @@ class TestControllerTest extends Specification {
 
         then:
         response.body.get().inputStream.text == "this is a test log 1"
+    }
+
+    def 'successful test: should get file'() {
+        given:
+        def controller = new TestController()
+
+        when:
+        def request = HttpRequest.GET("/tests/1")
+        def response = client.toBlocking().exchange(request, StreamedFile)
+
+        then:
+        new String(response.unpooledContent.array) == "this is a test log 1"
     }
 }
