@@ -22,15 +22,20 @@ dependencies {
     testImplementation("io.micronaut:micronaut-http-client")
 }
 
-
 application {
     mainClass = "com.manu.Application"
 }
+
 java {
     sourceCompatibility = JavaVersion.toVersion("21")
     targetCompatibility = JavaVersion.toVersion("21")
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 graalvmNative.toolchainDetection = false
 micronaut {
