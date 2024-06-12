@@ -32,4 +32,13 @@ class TestControllerTest extends Specification {
         then:
         new String(response.unpooledContent.array) == "this is a test log 1"
     }
+
+    def 'solved test: should get file'() {
+        when:
+        def request = HttpRequest.GET("/tests/1")
+        def response = client.toBlocking().exchange(request, String)
+
+        then:
+        response.body.get() == "this is a test log 1"
+    }
 }
